@@ -23,8 +23,10 @@ class ViewController: UIViewController {
     
     func recuperarDatos(){
         do {
-            
             self.myCountries = try context.fetch(Pais.fetchRequest())
+            DispatchQueue.main.async {
+                //self.tableView.reloadData()
+            }
         } catch {
             print("Error recuperando datos")
         }
