@@ -6,12 +6,28 @@
 //
 
 import UIKit
-
+import CoreData
 class ViewController: UIViewController {
 
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    private var myCountries:[Pais]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // recuperar datos
+        recuperarDatos()
+    }
+    
+    
+    func recuperarDatos(){
+        do {
+            
+            self.myCountries = try context.fetch(Pais.fetchRequest())
+        } catch {
+            print("Error recuperando datos")
+        }
     }
 
 
