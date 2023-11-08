@@ -31,7 +31,27 @@ class ViewController: UIViewController {
             print("Error recuperando datos")
         }
     }
-
+    
+    
+    @IBAction func addAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Agregar Pais", message: "Añade pais", preferredStyle: .alert)
+        alert.addTextField()
+        let botonAlerta = UIAlertAction(title: "Añadir", style: .default)
+        
+        let textField = alert.textFields![0]
+        print(textField)
+        // crear objeto pais
+        let nuevoPais = Pais(context: self.context)
+        nuevoPais.nombre = textField.text
+        
+        try! self.context.save()
+        
+        recuperarDatos()
+        
+        alert.addAction(botonAlerta)
+        self.present(alert, animated: true)
+    }
+    
 
 }
 
